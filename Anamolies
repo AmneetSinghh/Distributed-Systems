@@ -1,0 +1,57 @@
+
+
+
+
+Dirty read :
+
+current inventory = 10
+txn 1
+check at least 10 inventory present.
+update bbbbinventroy to 0
+do payment processing
+all logic...
+rollback.
+
+
+
+txn 2 paralel to txn 1 implementation
+check at least 10 inventory present.
+update inventroy to 0
+do payment  processing
+all logic...
+
+//reorder transction can reduce risk of dirty read.
+
+
+
+
+table :
+a b
+amneet 19
+lost update :
+Txn 1 start
+select * from table where a = amneet  limit 1;
+i(above query result rows){
+update table set amneet = 'z' and age = 18;
+}
+
+all operations
+coimmit.;
+
+
+
+
+txn 2 parallel to txn 1 implementation
+select * from table where a = z  and age = 18;
+i(above query result rows){
+update table set z = 'a' and age = 19;
+}
+
+all operations
+commit;
+
+// this transction commited  before txn 1 completes.
+//now txn1 result will have a lost update...
+
+
+// reread value just before commit can reduce risk of lost update.
