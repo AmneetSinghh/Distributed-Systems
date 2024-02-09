@@ -1,3 +1,4 @@
 1. Cleaup-cron : Expire reservation, expire orders
-2. FOR UPDATE is very slow,, if concurrent transactions hit,, it will run mostlty 1 by 1. If 2 txns hit select statement same time, one will get blocked.
+2. FOR UPDATE is very slow,, if concurrent transactions hit, it will run mostlty 1 by 1. If 2 txns hit select statement same time, one will get blocked.
+    - if concurrent transactions hit, skip locks can also be used.
 3. implement redis solution,,,
